@@ -1,0 +1,12 @@
+<ion-view view-title="SubCategorieslist">
+  <ion-nav-title>
+    <img src="img/babyappHeader.png" height="100%">
+  </ion-nav-title>
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="categoryItem in subcategorieslist" back-image="{{categoryItem.thumbnail}}" href="#/app/contentdetail/{{categoryItem.id}}">
+        {{categoryItem.name}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

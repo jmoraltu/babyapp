@@ -1,0 +1,69 @@
+<ion-view view-title="Dashboard" id="dashboard">
+  <ion-nav-title>
+    <img src="img/babyappHeader.png" width="auto" height="36px" style="margin-top: 3px;">
+  </ion-nav-title>
+  <ion-slides options="data.sliderOptions" slider="data.sliderDelegate" style="height:152px;">
+    <ion-slide-page ng-repeat="contentItem in weeklycontents" back-image="./img/sliderbg1.jpg">
+      <ion-content has-bouncing="false" overflow-scroll="false">
+        <!--<div class="row" style="overflow:hidden" ng-click="showWeekDetail({{contentItem.currentweek}})">-->
+        <div class="row" style="overflow:hidden">
+          <div class="col col-20" style="text-align: center;">
+            <h3 style="margin-top: 23px;">{{contentItem.currentweek}}</h3>
+          </div>
+          <div class="col col-20">
+            <img src="{{contentItem.thumbnail}}" style="margin-top: 0px;">
+          </div>
+          <div class="col col-60" style="margin-top: 0px; height: 68px; background-color: transparent; overflow:hidden">
+            <p style="white-space:normal">{{contentItem.description}}</p>
+          </div>
+        </div>
+       <!--<div class="swiper-button-next"></div>
+       <div class="swiper-button-prev"></div>-->
+      </ion-content>
+      <!--<div style="position: fixed; bottom: 0px; z-index: 20; height: 10px; width: 100%;" class="dashboard-edge"></div>-->
+    </ion-slide-page>
+  </ion-slides>
+  <!--<div style="background-image:url('./img/borderHeader.png'); width: 100%; height: 5px;"></div>-->
+  <ion-content class="dashboard-content" has-bouncing="false" overflow-scroll="false">
+    <div style="height: 100px"></div>
+    <ion-list type="list-inset" style="max-height: 100px; overflow: hidden">
+      <ion-item class="item-icon-left" href="#/app/profile">
+          <i class="icon ion-person"></i>
+          {{user.status}}
+      </ion-item>
+      <ion-item class="item-icon-left" href="#/app/temporalpage">
+        <i class="icon ion-compose"></i>
+        Mi bebe ha comenzado a dar sus primeras pataditas
+      </ion-item>
+      <ion-item class="item-icon-left" href="#/app/temporalpage">
+        <i class="icon ion-compose"></i>
+          Hoy he estado un poco triste pero me han enviado flores y ya estoy feliz :)
+      </ion-item>
+      <ion-item class="item-icon-left" href="#/app/temporalpage">
+        <i class="icon ion-compose"></i>
+        Hoy me he levantado con nauseas y mareos.
+      </ion-item>
+  </ion-content>
+  <div class="row bottom-menu-row">
+    <div class="col col-25 bottom-menu-col">
+      <a ng-click="redirectToView('weekbyweek')">
+        <img src="img/icons/weeksButton.png" width="100%" height="100%"/>
+      </a>
+    </div>
+    <div class="col col-25 bottom-menu-col">
+      <a ng-click="redirectToView('storeslist')">
+        <img src="img/icons/storeButton.png" width="100%" height="100%"/>
+      </a>
+    </div>
+    <div class="col col-25 bottom-menu-col">
+      <a ng-click="redirectToView('categorieslist')">
+        <img src="img/icons/diaryButton.png" width="100%" height="100%"/>
+      </a>
+    </div>
+    <div class="col col-25 bottom-menu-col">
+      <a ng-click="redirectToView('temporalpage')">
+        <img src="img/icons/babyButton.png" width="100%" height="100%"/>
+      </a>
+    </div>
+  </div>
+</ion-view>

@@ -1,0 +1,25 @@
+<ion-view view-title="Enciclopedía">
+  <!--<ion-nav-title>
+    <img src="img/babyappHeader.png" height="100%">
+  </ion-nav-title>-->
+  <ion-content overflow-scroll="false" has-bouncing="true">
+    <div ng-repeat="categoryItem in categorieslist">
+      <ion-list>
+        <ion-item class="item-stable" ng-click="toggleGroup(categoryItem)" ng-class="{active: isGroupShown(categoryItem)}">
+          <i class="icon" ng-class="isGroupShown(categoryItem) ? 'ion-minus' : 'ion-plus'"></i>
+          {{categoryItem.name}}
+        </ion-item>
+
+        <ion-item class="item-accordion"
+                ng-repeat="subcategory in subcategorieslist"
+                href="#/app/contentlistbycategory/{{subcategory.id}}"
+                ng-show="isGroupShown(categoryItem)">
+          {{subcategory.name}}
+        </ion-item>
+        <!-- <ion-item ng-repeat="categoryItem in categorieslist" back-image="{{categoryItem.thumbnail}}" href="#/app/subcategorieslist/{{categoryItem.id}}">
+          {{categoryItem.name}}
+        </ion-item>-->
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-view>

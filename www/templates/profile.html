@@ -1,0 +1,46 @@
+<ion-view title="Perfil" id="profile">
+    <ion-nav-bar class="bar-light">
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeftSideMenu()"> </button>
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear" ng-click="openEditProfileModal()" menu-toggle="right">Editar</button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content padding="'true'" scroll="true" class="has-header">
+                <ion-item>
+                    <label>Alias</label>
+                    <span class="item-note">{{user.username}}</span>
+                </ion-item>
+                <ion-item>
+                    <label>Mi estado</label>
+                    <span class="item-note">{{user.status}}</span>
+                </ion-item>
+                <ion-item>
+                    <label>Semanas de embarazo</label>
+                    <span class="item-note">{{user.pregnancyWeeks}}</span>
+                </ion-item>
+                <ion-item>
+                    <label>Sexo del bebé</label>
+                    <span class="item-note">{{user.babysex}}</span>
+                </ion-item>
+                <ion-item>
+                    <label>Relación familiar</label>
+                    <span class="item-note">{{user.relatedProfile}}</span>
+                </ion-item>
+                <ion-item>
+                    <label>Tu fecha de nacimiento</label>
+                    <span class="item-note">{{user.userBirthdate}}</span>
+                </ion-item>
+                <ion-item>
+                    <label>Móvil</label>
+                    <span class="item-note">{{user.mobile}}</span>
+                </ion-item>
+                <ion-item>
+                    <label>Código postal</label>
+                    <span class="item-note">{{user.zipcode}}</span>
+                </ion-item>
+    </ion-content>
+</ion-view>

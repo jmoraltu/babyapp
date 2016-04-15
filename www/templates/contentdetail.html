@@ -1,0 +1,20 @@
+<ion-view view-title="ContentDetail">
+  <ion-nav-title>
+    <img src="img/babyappHeader.png" height="100%">
+  </ion-nav-title>
+  <ion-content overflow-scroll="false">
+    <div class="list card">
+      <div class="item item-avatar">
+        <img src="{{article.thumbnail}}">
+        <h2>{{article.category}}</h2>
+        <p>{{article.dateContent}}</p>
+      </div>
+      <div class="item item-body">
+        <img class="full-image" src="{{article.image}}">
+        <h2>{{article.title}}</h2>
+        <p>{{article.description}}</p>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
+

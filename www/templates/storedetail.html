@@ -1,0 +1,13 @@
+<ion-view view-title="storedetail">
+  <ion-nav-title>{{store.name}}</ion-nav-title>
+  <ion-content overflow-scroll="false">
+    <div class="list card">
+      <div class="item item-body">
+        <img class="full-image" src="{{store.image}}">
+        <h2>{{store.name}}</h2>
+        <p>{{store.description}}</p>
+        <a ng-href="{{store.storeUrl}}" class="item" onclick="window.open(this.href, '_system', 'location=yes'); return false;">Visitar web</a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

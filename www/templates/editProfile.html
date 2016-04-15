@@ -1,0 +1,122 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">Perfil</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeEditProfileModal()">Cerrar</button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="has-header padding" overflow-scroll="false">
+    <form  name="editform" ng-submit="editform.$valid && updateUserProfile(user)" novalidate>
+      <div class="row">
+        <div class="col"><b>*Campos obligatorios</b></div>
+      </div>
+      <ion-list>
+        <label class="item item-input">
+          <span class="input-label">Alias</span>
+          <input type="text" placeholder="" ng-model="user.username" required>
+        </label>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Semanas de embarazo:
+          </div>
+          <select name="pregnancyWeeks" ng-model="user.pregnancyWeeks" required>
+                <option selected>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+                <option>21</option>
+                <option>22</option>
+                <option>23</option>
+                <option>24</option>
+                <option>25</option>
+                <option>26</option>
+                <option>27</option>
+                <option>28</option>
+                <option>29</option>
+                <option>30</option>
+                <option>31</option>
+                <option>32</option>
+                <option>33</option>
+                <option>34</option>
+                <option>35</option>
+                <option>36</option>
+                <option>37</option>
+                <option>38</option>
+                <option>39</option>
+                <option>40</option>
+                <option>41</option>
+          </select>
+        </label>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Sexo del bebé:
+          </div>
+          <select name="babysex" ng-model="user.babysex" required>
+            <option selected>Aún no lo sé</option>
+            <option>Niño</option>
+            <option>Niña</option>
+          </select>
+        </label>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Relación familiar:
+          </div>
+          <select name="relatedProfile" ng-model="user.relatedProfile" required>
+            <option selected>Madre</option>
+            <option>Padre</option>
+            <option>Otro</option>
+          </select>
+        </label>
+        <label class="item item-input item-select" required>
+          <div class="input-label">
+            Estado:
+          </div>
+            <select name="userstatus" ng-model="user.status">
+                <option value="" selected>Seleciona</option>
+                <option>Estoy contenta</option>
+                <option>Necesito mimos</option>
+                <option>Amo a mi bebé</option>
+                <option>Me hace mucha ilusión</option>
+                <option>Me siento plena</option>
+                <option>Queda muy poco ya!</option>
+          </select>
+        </label>
+      </ion-list>
+      <div class="row">
+        <div class="col"><b>Campos opcionales</b></div>
+      </div>
+      <ion-list>
+        <label class="item item-input">
+          <span class="input-label">Tu fecha de nacimiento</span>
+          <input name="birthdate" type="date" ng-model="user.userBirthdate">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Móvil</span>
+          <input name="mobile" type="tel" placeholder="" ng-model="user.mobile">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Código postal</span>
+          <input name="zipcode" type="tel" placeholder="" ng-model="user.zipcode">
+        </label>
+      </ion-list>
+      <button class="button button-calm button-block" type="submit" ng-disabled="signupform.$invalid">Actualizar</button>
+      <div class="row">
+        <p ng-show="signupform.username.$invalid || signupform.duedate.$invalid || signupform.babysex.$invalid || signupform.babysex.$invalid || signupform.relatedProfile.$invalid" class="help-block no-border">*Rellena todos los campos obligatorios.</p>
+      </div>
+    </form>
+
+    </ion-content>
+</ion-modal-view>

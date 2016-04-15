@@ -1,0 +1,73 @@
+<ion-side-menus enable-menu-with-back-views="true">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-light">
+      <ion-nav-back-button class="no-text">
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <!--<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>-->
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left" ng-click="toggleLeftSideMenu()">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar-profile">
+      <div class="profile">
+        <img class="profile-picture" src="./img/profilePicture.png" />
+        <p class="name">{{usermenu.username}}</p>
+          <!--<select name="userstatus" ng-change="changeStatus(selectedItem)" ng-model="selectedItem">
+            <option value="" selected>Seleciona tu estado</option>
+            <option ng-selected="selected">Estoy contenta</option>
+            <option>Necesito mimos</option>
+            <option>No molestar</option>
+          </select>-->
+      </div>
+    </ion-header-bar>
+
+    <ion-content has-bouncing="false" overflow-scroll="false" class="has-expanded-header">
+      <ion-list>
+        <ion-item class="item-icon-left" menu-close href="#/app/dashboard">
+          <i class="icon ion-ios-home"></i>
+          BabyApp de hoy
+        </ion-item>
+        <ion-item class="item-icon-left" menu-close href="#/app/weekbyweek/{{usermenu.pregnancyWeeks}}">
+        <!--<ion-item class="item-icon-left" menu-close href="#/app/weekbyweek">-->
+          <i class="icon ion-arrow-graph-up-right"></i>
+          Evolución semanal
+        </ion-item>
+        <ion-item class="item-icon-left" menu-close href="#/app/categoriesList">
+          <i class="icon ion-ios-book"></i>
+          Enciclopedía BabyApp
+        </ion-item>
+        <ion-item class="item-icon-left" menu-close href="#/app/storeslist">
+          <i class="icon ion-bag"></i>
+          Tienda
+        </ion-item>
+        <ion-item class="item-icon-left" menu-close href="#/app/album">
+          <i class="icon ion-images"></i>
+          Álbum
+        </ion-item>
+        <ion-item class="item-icon-left" menu-close href="#/app/temporalpage">
+          <i class="icon ion-calendar"></i>
+          Calendario
+        </ion-item>
+        <ion-item class="item-icon-left" menu-close href="#/app/temporalpage">
+          <i class="icon ion-compose"></i>
+          Mis Experiencias
+        </ion-item>
+        <ion-item class="item-icon-left" menu-close href="#/app/toolslist">
+          <i class="icon ion-settings"></i>
+          Utilidades
+        </ion-item>
+        <ion-item class="item-icon-left" menu-close href="#/app/profile">
+          <i class="icon ion-ios-contact"></i>
+          Mi Perfil
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

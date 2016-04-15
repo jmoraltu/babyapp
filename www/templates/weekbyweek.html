@@ -1,0 +1,99 @@
+<ion-view id="weekbyweek" title="EvoluciónSemanal">
+  <ion-nav-title>
+        <img src="img/headerIcon.png" width="auto" height="38px" style="float:left"/><h1 class="title"> Evolución Semanal</h1>
+  </ion-nav-title>
+
+  <ion-floating-menu id="floating-menu">
+    <ion-floating-item icon="ion-social-reddit-outline" button-color="#2AC9AA" click="scrollToAnchorWithinCurrentPage('section-babyinfo')"></ion-floating-item>
+    <ion-floating-item icon="ion-woman" button-color="#2AC9AA" click="scrollToAnchorWithinCurrentPage('section-bodyinfo')"></ion-floating-item>
+    <ion-floating-item icon="ion-help" button-color="#2AC9AA" click="scrollToAnchorWithinCurrentPage('section-question')"></ion-floating-item>
+  </ion-floating-menu>
+
+
+  <ion-slides options="data.sliderOptions" slider="data.sliderDelegate">
+    <ion-slide-page ng-repeat="contentItem in weeklycontents">
+      <div class="row header-slider">
+        <div class="col col-20" style="text-align: center;">
+          <h3 style="margin-top: 23px;">{{contentItem.currentweek}}</h3>
+        </div>
+        <div class="col col-80" style="margin-top: 0px; height: 68px; background-color: transparent; overflow:hidden">
+          <p style="white-space:normal">{{contentItem.description}}</p>
+        </div>
+      </div>
+      <!--<div class="row">
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>-->
+
+      <!--<div class="row header-buttons">
+        <div class="col col-33" style="text-align: center">
+          <button ng-click="gotoAnchor('section-babyinfo')" class="button button-fab button-balanced icon ion-social-reddit-outline"></button>
+        </div>
+        <div class="col col-33" style="text-align: center">
+          <button ng-click="gotoAnchor('section-bodyinfo')" class="button button-fab ink-dark button-calm icon ion-woman"></button>
+        </div>
+        <div class="col col-33" style="text-align: center">
+          <button ng-click="gotoAnchor('section-question')" class="button button-fab ink-dark button-calm icon ion-help"></button>
+        </div>
+      </div>-->
+      <ion-content has-bouncing="false" overflow-scroll="false" style="margin-top: 90px" delegate-handle="content">
+        <section id="section-babyinfo">
+          <div class="card">
+            <div class="item item-divider">
+              Desarrollo de mi Bebé
+            </div>
+            <div class="item item-text-wrap">
+              <span ng-bind-html="contentItem.babyinfo"></span>
+            </div>
+          </div>
+        </section>
+        <section id="section-bodyinfo">
+          <div class="card">
+            <div class="item item-divider">
+              Cambios de tu cuerpo
+            </div>
+            <div class="item item-text-wrap">
+              <span ng-bind-html="contentItem.bodyinfo"></span>
+            </div>
+          </div>
+        </section>
+        <section id="section-question">
+          <div class="card">
+            <div class="item item-divider">
+              La pregunta
+            </div>
+            <div class="item item-text-wrap">
+              <h2>{{contentItem.question}}</h2>
+              <p ng-bind-html="contentItem.answer"></p>
+              <!--<div ng-class="isItemShown(contentItem.question) ? 'item-expand active' : 'item-expand inactive'">
+                <h2>{{contentItem.question}}</h2>
+                <p ng-bind-html="contentItem.answer"></p>
+              </div>
+              <div ng-click="toggleItem(contentItem.question)" class="item-expand-footer">
+                <i ng-class="isItemShown(contentItem.question) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i>
+                {{isItemShown(contentItem.question) ? 'Cerrar' : 'Leer más' }}
+              </div>-->
+            </div>
+          </div>
+        </section>
+        <!--<section id="section-advices">
+          <div class="card">
+            <div class="item item-divider">
+              Consejos
+            </div>
+            <div class="item item-text-wrap">
+              <p>{{contentItem.advices}}</p>
+              <div ng-class="isItemShown(contentItem.advices) ? 'item-expand active' : 'item-expand inactive'">
+                <p>{{contentItem.advices}}</p>
+              </div>
+             <div ng-click="toggleItem(contentItem.advices)" class="item-expand-footer">
+                <i ng-class="isItemShown(contentItem.advices) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i>
+                {{isItemShown(contentItem.advices) ? 'Cerrar' : 'Leer más' }}
+              </div>
+            </div>
+          </div>
+        </section>-->
+      </ion-content>
+    </ion-slide-page>
+  </ion-slides>
+</ion-view>
