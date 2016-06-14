@@ -23,14 +23,11 @@
 
     <div class="row" ng-repeat="image in allImages" ng-if="$index % 2 === 0">
       <div class="col col-50" ng-if="$index < allImages.length">
-        <img ng-src="{{allImages[$index]}}" width="100%" height="100%"/>
-        <!--<img ng-src="{{urlForImage(allImages[$index])}}" width="100%" height="100%"/>-->
+        <img ng-src="{{allImages[$index]}}" class="album-img-cover"/>
       </div>
-      <div class="col col-50" ng-if="$index +1 < allImages.length">
-        <img ng-src="{{allImages[$index +1]}}" width="100%" height="100%"/>
-        <!--<img ng-src="{{urlForImage(allImages[$index +1])}}" width="100%" height="100%"/>-->
+      <div class="col col-50" ng-if="$index + 1 < allImages.length">
+        <img ng-src="{{allImages[$index +1]}}" class="album-img-cover"/>
       </div>
-
     </div>
   </ion-content>
 </ion-view>

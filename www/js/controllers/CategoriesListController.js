@@ -5,8 +5,13 @@
 angular.module('CategoryListModule', ['CategoryModel','CategoryServiceModule'])
 
 //************** Categories Controller  ********************
-  .controller('CategoriesListController', function ($scope, Category, CategoryService, categories) {
+  .controller('CategoriesListController', function ($scope, Category, CategoryService, categories, $ionicPlatform, $cordovaGoogleAnalytics) {
 
+
+  //$ionicPlatform.ready(function () {
+     //console.log('cordovaGoogleAnalytics.trackView - CategoriesList');
+     //$cordovaGoogleAnalytics.trackView('CategoriesList Screen');
+  //});
 
 
   $scope.toggleGroup = function(category) {
@@ -55,6 +60,7 @@ angular.module('CategoryListModule', ['CategoryModel','CategoryServiceModule'])
 
   $scope.$on('$ionicView.loaded', function(){
     console.log('ionicView.loaded.......');
+    $cordovaGoogleAnalytics.trackView('CategoriesList Screen');
     initView();
   });
 })

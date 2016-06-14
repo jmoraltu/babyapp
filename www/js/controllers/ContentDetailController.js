@@ -4,7 +4,7 @@
 angular.module('ContentDetailModule', ['ContentModel'])
 
   //************** Content Detail Controller  ********************
-  .controller('ContentDetailController', function ($scope, $stateParams, articleObj) {
+  .controller('ContentDetailController', function ($scope, $stateParams, articleObj,$cordovaGoogleAnalytics) {
     var initView = function(categoryId){
       console.log('inside initView...');
 
@@ -16,6 +16,7 @@ angular.module('ContentDetailModule', ['ContentModel'])
     $scope.$on('$ionicView.loaded', function(){
       console.log('onicView.loaded......ContentDetailController.');
       var categoryId = $stateParams.id;
+      $cordovaGoogleAnalytics.trackView('ContentDetail Screen');
       initView(categoryId);
     });
   })

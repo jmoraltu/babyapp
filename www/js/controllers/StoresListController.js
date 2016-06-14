@@ -5,11 +5,10 @@
 angular.module('StoresListModule', ['StoreModel','StoresServiceModule'])
 
   //************** Stores Controller  ********************
-  .controller('StoresListController', function ($scope, Store, StoresService) {
+  .controller('StoresListController', function ($scope, Store, StoresService, $ionicPlatform, $cordovaGoogleAnalytics) {
 
     var initView = function(){
     //$scope.storeslist = StoresService.getStores();
-    console.log('StoresListModule.initView....... ');
 
 
     StoresService.getStores().then(function(){
@@ -23,6 +22,7 @@ angular.module('StoresListModule', ['StoreModel','StoresServiceModule'])
     };
 
     $scope.$on('$ionicView.loaded', function(){
+      $cordovaGoogleAnalytics.trackView('StoresList Screen');
       console.log('StoresListModule.loaded.......');
       initView();
     });

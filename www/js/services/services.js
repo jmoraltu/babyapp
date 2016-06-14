@@ -8,10 +8,30 @@ angular.module('starter.services', [])
 
     console.log('.......pictureService.......');
     var addPicture = function(newPicture) {
-        console.log('.......addPicture.......');
-        console.log('Picture from object: ' + newPicture.uri);
+        console.log('.......CRUDService.getObject.......');
+        //console.log('Picture from object: ' + newPicture.uri);
         picturesList = CRUDService.getObject('picturesList');
+
+        var isPictureListEmpty = $.isEmptyObject(picturesList);
+
+        if(isPictureListEmpty){
+            CRUDService.setObject('picturesList', picturesList);
+            console.log('isPictureListEmpty');
+        }
+        else{
+            console.log('isPictureListEmpty NOT');
+        }
+        /*
+        if(isPictureListEmpty){
+            console.log('.......isPictureListEmpty.......');
+            picturesList.unshift(newPicture);
+            CRUDService.setObject('tarotMessages', picturesList);
+        }*/
+
+        console.log('.......unshift....... ' + picturesList);
+        console.log('newPicture.filepath: ' + newPicture.filepath);
         picturesList.unshift(newPicture);
+        console.log('.......picturesList.......');
         CRUDService.setObject('picturesList', picturesList);
     };
 

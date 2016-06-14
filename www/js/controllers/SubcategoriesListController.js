@@ -8,7 +8,7 @@
 angular.module('SubcategoryListModule', ['CategoryModel'])
 
   //************** Categories Controller  ********************
-  .controller('SubcategoriesListController', function ($scope, $stateParams, Category) {
+  .controller('SubcategoriesListController', function ($scope, $stateParams, Category, $cordovaGoogleAnalytics) {
 
 
 
@@ -70,6 +70,7 @@ angular.module('SubcategoryListModule', ['CategoryModel'])
       console.log('onicView.loaded subcategory.......');
       var categoryId = $stateParams.id;
       console.log('categoryId: ' + categoryId);
+      $cordovaGoogleAnalytics.trackView('SubcategoryList Screen');
       initView(categoryId);
     });
   })

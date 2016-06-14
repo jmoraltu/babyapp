@@ -4,7 +4,12 @@
 angular.module('DashboardModule', ['WeeklyContentModel','WeeklyContentServiceModule'])
 
   //************** Dashboard Controller  ********************
-  .controller('DashboardController', function ($scope, $state, $location, weeklycontents, CRUDService, userObj, $ionicModal, $ionicLoading, $ionicHistory) {
+  .controller('DashboardController', function ($scope, $state, $location, $ionicPlatform, weeklycontents, CRUDService, userObj, $ionicModal, $ionicLoading, $ionicHistory, $cordovaGoogleAnalytics) {
+
+    $ionicPlatform.ready(function () {
+         console.log('cordovaGoogleAnalytics.trackView - Home Screen');
+         $cordovaGoogleAnalytics.trackView('Home Screen');
+    });
 
     $scope.data = {};
     //$scope.user = CRUDService.getObject('userProfile');

@@ -1,8 +1,9 @@
 angular.module('ProfileModule', ['UserModel'])
-.controller('ProfileController', function($scope, $timeout, $stateParams, CRUDService, $ionicModal, $ionicLoading, $state, $ionicSideMenuDelegate) {
+.controller('ProfileController', function($scope, $timeout, $stateParams, CRUDService, $ionicModal, $ionicLoading, $state, $ionicSideMenuDelegate, $cordovaGoogleAnalytics) {
 
             $scope.$on('$ionicView.enter', function(){
                        console.log("ionicView.enter");
+                       $cordovaGoogleAnalytics.trackView('Profile Screen');
                        $scope.user = CRUDService.getObject('userProfile');
 
             });

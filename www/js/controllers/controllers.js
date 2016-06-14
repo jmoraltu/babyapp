@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-  .controller('AppCtrl', function ($scope, $ionicPlatform, $ionicModal, $timeout, CRUDService, $rootScope, $ionicLoading, $ionicSideMenuDelegate, $ionicHistory, $state) {
+  .controller('AppCtrl', function ($scope, $ionicPlatform, $ionicModal, $timeout, CRUDService, $rootScope, $ionicLoading, $ionicSideMenuDelegate, $ionicHistory, $state, pictureService, $cordovaGoogleAnalytics) {
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -8,6 +8,9 @@ angular.module('starter.controllers', [])
     // listen for the $ionicView.enter event:
     //$scope.$on('$ionicView.enter', function(e) {
     //});
+
+
+
 
     $scope.toggleLeftSideMenu = function() {
         $ionicSideMenuDelegate.toggleLeft();
@@ -32,10 +35,13 @@ angular.module('starter.controllers', [])
     var isRegister = false;
 
     $ionicPlatform.ready(function () {
+        console.log('register to Analytics with track ID UA-61933092-10');
+        //$cordovaGoogleAnalytics.debugMode();
+        $cordovaGoogleAnalytics.startTrackerWithId('UA-61933092-10');
 
-      $scope.initPushNotification();
+        $scope.initPushNotification();
 
-      $scope.registerUser();
+        $scope.registerUser();
 
     });
 
@@ -279,28 +285,69 @@ angular.module('starter.controllers', [])
 
 
   //.controller('AlbumCtrl', function ($scope, $ionicModal, $ionicBackdrop, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
-  .controller('AlbumCtrl', function ($scope, $ionicScrollDelegate ,$cordovaCamera, $cordovaImagePicker, $cordovaFile, CRUDService) {
+  .controller('AlbumCtrl', function ($scope, $ionicScrollDelegate ,$cordovaCamera, $cordovaImagePicker, $cordovaFile, CRUDService, pictureService,
+                                     $ionicPlatform, $cordovaGoogleAnalytics) {
 
     $scope.allImages = [];
     $scope.objImages = [];
     $scope.pictureListObj = [];
 
+    /*$ionicPlatform.ready(function () {
+     console.log('cordovaGoogleAnalytics.trackView - Album');
+     $cordovaGoogleAnalytics.trackView('Album Screen');
+    });*/
 
     $scope.$on('$ionicView.enter', function(){
+        $cordovaGoogleAnalytics.trackView('Album Screen');
+        window.resolveLocalFileSystemURL(cordova.file.dataDirectory, $scope.onFileSystemSuccess, $scope.fail);
       //$scope.tarotMsgList = tarotMessagesIn;
     });
 
+
+    $scope.fail = function(error) {
+         console.log("FAIIILLLLL: " + error.code);
+    }
+
+    $scope.onFileSystemSuccess = function(fileSystem){
+        var directoryReader = fileSystem.createReader();
+        console.log('fileSystem:' + fileSystem);
+        directoryReader.readEntries(function (entries) {
+
+            var i;
+
+            console.log('entries.length:' + entries.length);
+
+            for (i = 0; i < entries.length; i++) {
+                //console.log('entries.name: ' + entries[i].name);
+                //if (entries[i].name === "DCIM") {
+                    //var dcimReader = entries[i].createReader();
+                    //dcimReader.readEntries(onGetDCIM, fail);
+                    //break; // remove this to traverse through all the folders and files
+                //}
+                console.log('IMAGE: ' + cordova.file.dataDirectory + entries[i].name);
+                $scope.allImages.push(cordova.file.dataDirectory + entries[i].name);
+            }
+            $scope.$apply();
+        }, function () {
+            console.log("fail readEntries...");
+        })
+    }
 
     $scope.copyFileToTempLocation = function(sourcePath){
       var sourceDirectory = sourcePath.substring(0, sourcePath.lastIndexOf('/') + 1);
       var sourceFileName = sourcePath.substring(sourcePath.lastIndexOf('/') + 1, sourcePath.length);
 
+
+     console.log('sourceDirectory: ' +sourceDirectory);
+     console.log('cordova.file.dataDirectory: ' + cordova.file.dataDirectory);
+     console.log('sourceFileName: ' + sourceFileName);
+
       $cordovaFile.copyFile(sourceDirectory, sourceFileName, cordova.file.dataDirectory, sourceFileName)
         .then(function(success) {
-          console.dir(success);
+          console.dir('-----success------');
           $scope.fileName = cordova.file.dataDirectory + sourceFileName;
 
-          //console.log(sourcePath);
+          console.log('sourcePath: ' + $scope.fileName);
           window.plugins.Base64.encodeFile($scope.fileName, function(base64){  // Encode URI to Base64 needed for contacts plugin
             // var imageObj = {src:base64};
             //var pictureObject = {data:base64 , uri:$scope.fileName};
@@ -308,7 +355,15 @@ angular.module('starter.controllers', [])
             //pictureService.addPicture(pictureObject);
           });
 
+          var imageObj = {filepath:$scope.fileName};
+          var picturesList = CRUDService.getObject('picturesList');
+          var isPictureListEmpty = $.isEmptyObject(picturesList);
+
+          //pictureService.addPicture(imageObj);
           $scope.allImages.push($scope.fileName);
+
+          //var pics = pictureService.getPictures().length;
+          //console.log('Pics...' + pics);
 
         }, function(error) {
           console.dir(error);
@@ -353,11 +408,12 @@ angular.module('starter.controllers', [])
       };
 
       var options = {
-        maximumImagesCount: 5, // Max number of selected images, I'm using only one for this example
+        maximumImagesCount: 10, // Max number of selected images, I'm using only one for this example
         sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
         encodingType: Camera.EncodingType.JPEG,
-        targetHeight: 200,
-        quality: 70            // Higher is better
+        width: 0,
+        height: 300,
+        quality: 80            // Higher is better
       };
 
 
