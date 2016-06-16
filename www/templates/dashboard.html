@@ -25,24 +25,26 @@
   </ion-slides>
   <!--<div style="background-image:url('./img/borderHeader.png'); width: 100%; height: 5px;"></div>-->
   <ion-content class="dashboard-content" has-bouncing="false" overflow-scroll="false">
-    <div style="height: 100px"></div>
-    <ion-list type="list-inset" style="max-height: 100px; overflow: hidden">
-      <ion-item class="item-icon-left" href="#/app/profile">
-          <i class="icon ion-person"></i>
-          {{user.status}}
+    <div style="height: 90px"></div>
+    <ion-list class="dashboard-list" type="list-inset">
+      <ion-item class="item-icon-left item-icon-right" href="#/app/profile">
+        <i class="icon ion-person"></i>
+            {{userstatus}}
+        <i class="icon ion-gear-a"></i>
       </ion-item>
       <ion-item class="item-icon-left" href="#/app/temporalpage">
         <i class="icon ion-compose"></i>
-        Mi bebe ha comenzado a dar sus primeras pataditas
+             Mi bebe ha comenzado a dar sus primeras pataditas
       </ion-item>
       <ion-item class="item-icon-left" href="#/app/temporalpage">
         <i class="icon ion-compose"></i>
-          Hoy he estado un poco triste pero me han enviado flores y ya estoy feliz :)
+            Hoy he estado un poco triste pero me han enviado flores y ya estoy feliz :)
       </ion-item>
       <ion-item class="item-icon-left" href="#/app/temporalpage">
         <i class="icon ion-compose"></i>
-        Hoy me he levantado con nauseas y mareos.
+            Hoy me he levantado con nauseas y mareos.
       </ion-item>
+    </ion-list>
   </ion-content>
   <div class="row bottom-menu-row">
     <div class="col col-25 bottom-menu-col">

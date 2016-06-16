@@ -10,8 +10,6 @@ angular.module('starter.controllers', [])
     //});
 
 
-
-
     $scope.toggleLeftSideMenu = function() {
         $ionicSideMenuDelegate.toggleLeft();
         console.log(' ************** $ionicSideMenuDelegate.toggleLeft ************** ');
@@ -104,7 +102,7 @@ angular.module('starter.controllers', [])
         console.log('User birthdate '+ $scope.user.userBirthdate);
         console.log('User mobile '+ $scope.user.mobile);
         console.log('User zipcode '+ $scope.user.zipcode);
-        console.log('User state '+ $scope.user.state);
+        //console.log('User state '+ $scope.user.state);
         console.log('User UUID ' + device.uuid);
 
         var birthdate = new Date($scope.user.userBirthdate);
@@ -112,9 +110,27 @@ angular.module('starter.controllers', [])
 
         var URL_SET_USER_INFO = 'http://ws-app.quovasys.net:88/user.asmx/SetPrivateInfoByKey';
 
+        var postData = {seckey : "ff15f69bed5f6241497d886bbd13dc4", keyid : device.uuid, userlang : "es", appid : "4", params : [{ value : $scope.user.zipcode, id : 1, name : "Postal+Code"},{value : $scope.user.userBirthdate, id : 6, name : "Birthday"},{value : $scope.user.username, id : 7, name : "Alias"},{ value : $scope.user.mobile, id : 10, name : "Phone"}]};
+
         $ionicLoading.show({
           template: 'Cargando...'
         });
+
+        console.log(JSON.stringify(postData));
+
+        var dataParam = {
+          data:JSON.stringify(postData)
+        };
+
+        $.ajax({
+                type: "POST",
+                url: URL_SET_USER_INFO,
+                data: dataParam,
+                success: function(data, status){
+                    console.log('sent user data to quo server');
+                },
+        });
+
 
         //$scope.user = CRUDService.getObject('userProfile');
         CRUDService.setObject('userProfile', $scope.user);

@@ -40,7 +40,7 @@ angular.module('DashboardModule', ['WeeklyContentModel','WeeklyContentServiceMod
         console.log('$scope.user.pregnancyWeeks----');
       }else{
         console.log('Estoy contenta ....');
-        $scope.user.status = "Estoy contenta";
+        //$scope.user.status = "Estoy contenta(o)";
         weekNum =  4;
       }
 
@@ -83,6 +83,7 @@ angular.module('DashboardModule', ['WeeklyContentModel','WeeklyContentServiceMod
     };
 
     $scope.$on('$ionicView.enter', function(){
+         $scope.userstatus = "Estoy contenta(o)";
          console.log('$ionicView.enter..............');
          var days = Math.floor(22/7);
          console.log('cantidad de semanas: ' + days);

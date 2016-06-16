@@ -10014,3 +10014,23 @@ https://css-tricks.com/almanac/properties/o/object-fit/
     width: 100%;
 }
 
+.dashboard-list{
+    max-height: 100px; overflow: hidden;
+}
+
+
+.dashboard-list .list-inset{
+     background-color: rgba(255,255,255,0) !important;
+}
+
+.dashboard-list .item-complex{
+      background-color:transparent !important;
+      border-color: transparent;
+      margin-bottom: 4px;
+      margin-top: 4px;
+}
+
+.dashboard-list .item-content{
+    background-color: rgba(255,255,255,0.2) !important;
+    padding-right:  10px !important;
+}
