@@ -14,13 +14,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
     //Device information
     console.log('Device info');
-    console.log(device.platform);
+    /*console.log(device.platform);
     console.log(device.uuid);
     console.log(device.model);
-    console.log(device.cordova);
+    console.log(device.cordova);*/
 
 
     //Setting AdMob banner and Interstitial configuration
+      /*
     if(AdMob) {
 
       console.log('Creating AdMob banner....');
@@ -51,28 +52,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         adSize: AdMob.AD_SIZE.SMART_BANNER,
         bgColor: 'black'
       });
-      /*
-      AdMob.prepareInterstitial({
-        adId: admobid.interstitial,
-        autoShow: true
-      });*/
     }
     else {
       console.log("No Admob plugin found");
-    }
+    }*/
 
-    var appId = 3;
+    var appId = 4;
 
-    /*
-    $scope.registerUser = function() {
-      var URL_REGISTER = 'http://ws-app.quovasys.net:88/user.asmx/RegisterKey';
+    var URL_REGISTER = 'http://ws-app.quovasys.net:88/user.asmx/RegisterKey';
 
-      var postData = {
-        keyid :device.uuid,
-        appid:appId,
+    var postData = {
+        //keyid :device.uuid,
+        keyid :'testdeviceuuid',
+        //appid:appId,
+        appid:'testappid',
         seckey:"babyapp-seckey-value"
       };
 
+      /*
       $.ajax({
         type: "POST",
         url: URL_REGISTER,
@@ -81,7 +78,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           console.log('sent to server');
         },
       });
-    }*/
+      */
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)

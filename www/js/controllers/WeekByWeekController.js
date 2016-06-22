@@ -30,9 +30,8 @@ angular.module('WeekByWeekModule', ['WeeklyContentModel','WeeklyContentServiceMo
         prevButton: '.swiper-button-prev',
         initialSlide : weekNum,
         direction: 'horizontal',
-        paginationType:'bullets',
         speed: 200,
-        paginationHide: true
+        pagination: false
       };
       $scope.data.sliderDelegate = null;
 

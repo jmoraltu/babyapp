@@ -10018,14 +10018,22 @@ https://css-tricks.com/almanac/properties/o/object-fit/
     max-height: 100px; overflow: hidden;
 }
 
-
 .dashboard-list .list-inset{
      background-color: rgba(255,255,255,0) !important;
 }
 
+.dashboard-list .userstatus{
+     background-color: rgba(255,255,255,0) !important;
+      /*border-color: transparent;*/
+      border: none;
+      margin-bottom: 4px;
+      margin-top: 4px;
+}
+
 .dashboard-list .item-complex{
       background-color:transparent !important;
-      border-color: transparent;
+      /*border-color: transparent;*/
+      border: none;
       margin-bottom: 4px;
       margin-top: 4px;
 }

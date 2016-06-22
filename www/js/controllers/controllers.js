@@ -17,6 +17,11 @@ angular.module('starter.controllers', [])
     };
 
     $scope.$on('$ionicView.enter', function(){
+      //$timeout($scope.openSignUpModal, 10);
+      if(!$rootScope.isUserRegister){
+        console.log('Register user enable');
+        //$timeout($scope.openSignUpModal, 10);
+      };
       console.log(' --------------------- AppCtrl --- $ionicView.enter ---------------------- ');
     });
 
@@ -89,7 +94,7 @@ angular.module('starter.controllers', [])
       };*/
 
       //for testing
-      $timeout($scope.openSignUpModal, 10);
+      //$timeout($scope.openSignUpModal, 10);
 
       $scope.user = {};
 
@@ -141,97 +146,10 @@ angular.module('starter.controllers', [])
         }, 1000);
 
       };
-      /*
-      $scope.doSignUp = function(userObject) {
-
-        console.log("doing doSignUp........");
-        console.log("userEdited user: " + userObject.username);
-        console.log("userEdited birthdate: " + userObject.birthdate);
-        $ionicLoading.show({
-          template: 'Cargando...'
-        });
-
-        //$scope.editform.$setPristine();
-
-        var user = $scope.user;
-        console.log('SingUp username'+ user.username);
-
-        var birthdate = new Date($scope.user.birthdate);
-
-        $scope.user.birthdate = birthdate.getDate() +'/'+(birthdate.getMonth()+1) +'/'+ birthdate.getFullYear();
-
-        console.log('SingUp User'+ $scope.user);
-        console.log('Alias: ' + $scope.user.username);
-        console.log('Móvil: ' + $scope.user.mobile);
-        console.log('Fecha: ' + $scope.user.birthdate);
-        console.log('Signo: ' + $scope.user.sign);
-        console.log('Codigo: ' + $scope.user.zipcode);
-        var uuid  = CRUDService.get('uuid')
-        console.log("uuid: " + uuid);
-
-        var URL_SET_USER_INFO = 'http://ws-app.quovasys.net:88/user.asmx/SetPrivateInfoByKey';
-
-
-        var postData = {seckey : "ff15f69bed5f6241497d886bbd13dc4", keyid : uuid, userlang : "es", appid : "3", params : [{ value : $scope.user.zipcode, id : 1, name : "Postal+Code"},{ value : $scope.user.birthdate, id : 6, name : "Birthday"},{ value : $scope.user.username, id : 7, name : "Alias"},{ value : $scope.user.sign, id : 8, name : "Horoscopo"},{ value : $scope.user.mobile, id : 10, name : "Phone"}]};
-
-        var dataParam = {
-          data:JSON.stringify(postData)
-        };
-
-        console.log(JSON.stringify(postData));
-
-        $.ajax({
-          type: "POST",
-          url: URL_SET_USER_INFO,
-          data: dataParam,
-          success: function(data, status){
-            console.log('sent user data to quo server');
-          },
-        });
-
-
-
-        var onesignalId = CRUDService.get('onesignalId');
-        console.log(onesignalId);
-
-        //window.plugins.OneSignal.sendTag("signo", $scope.user.sign);
-
-        var URL_UPDATE_USER_INFO = "https://onesignal.com/api/v1/players/" + onesignalId;
-        console.log(URL_UPDATE_USER_INFO);
-
-
-        $.ajax({
-          type: "PUT",
-          url: URL_UPDATE_USER_INFO,
-          data: {"tags":{"signo":$scope.user.sign}},
-          success: function(data, status){
-            console.log(data);
-            console.log('sent update user data to on signal server');
-          },
-        });
-
-        CRUDService.setObject('userProfile', $scope.user);
-
-
-        $timeout(function() {
-          $ionicLoading.hide();
-          //$scope.closeEditProfileModal();
-          $scope.closeSignUpModal();
-        }, 1000);
-      };
-
-      */
-
     };
 
-    $scope.initPushNotification = function () {
 
-      /*window.plugins.OneSignal.getIds(function (ids) {
-        console.log('OneSignalUserID:' + ids.userId);
-        console.log('OneSignalPushToken:' + ids.pushToken);
-        //document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
-        console.log('getIds: ' + JSON.stringify(ids));
-      });*/
+    $scope.initPushNotification = function () {
 
       var notificationOpenedCallback = function (jsonData) {
         console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
@@ -277,21 +195,6 @@ angular.module('starter.controllers', [])
     };
   })
 
-  //************** Stores Controller  ********************
-  /*
-  .controller('StoreslistCtrl', function ($scope) {
-    $scope.storeslist = [
-      {id: 1, title: 'Interflora', description:'Envía flores online con la calidad Interflora',url: 'http://www.interflora.es', icon:'./img/stores/interflora.jpg', image:''},
-      {id: 2, title: 'Dexeus', description:'Dedicados a mejorar y proteger la salud de la mujer', url:'http://www.dexeus.com', icon:'./img/stores/dexeus-icon.png', image:''},
-      {id: 3, title: 'FIATC', description:'Expertos en seguros. Llevamos más de ochenta años asegurando a las personas y su patrimonio.', url:'https://www.fiatc.es/', icon:'./img/stores/fiatc.png', image:'./img/stores/fiatc.png'},
-      {id: 4, title: 'Babies R Us', description:'Ropa y accesorios para niños y bebés, ropa para los más pequeños', url:'http://www.babiesrus.com/', icon:'./img/stores/babiesrus-icon.jpg', image:''}
-    ];
-
-    $scope.getstorebyid = function(id){
-
-    }
-
-  })*/
 
   .controller('StoreCtrl', function ($scope, $stateParams) {
     var storeId = $stateParams.id;
@@ -308,15 +211,10 @@ angular.module('starter.controllers', [])
     $scope.objImages = [];
     $scope.pictureListObj = [];
 
-    /*$ionicPlatform.ready(function () {
-     console.log('cordovaGoogleAnalytics.trackView - Album');
-     $cordovaGoogleAnalytics.trackView('Album Screen');
-    });*/
 
     $scope.$on('$ionicView.enter', function(){
         $cordovaGoogleAnalytics.trackView('Album Screen');
         window.resolveLocalFileSystemURL(cordova.file.dataDirectory, $scope.onFileSystemSuccess, $scope.fail);
-      //$scope.tarotMsgList = tarotMessagesIn;
     });
 
 

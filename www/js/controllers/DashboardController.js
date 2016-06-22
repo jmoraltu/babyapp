@@ -4,17 +4,50 @@
 angular.module('DashboardModule', ['WeeklyContentModel','WeeklyContentServiceModule'])
 
   //************** Dashboard Controller  ********************
-  .controller('DashboardController', function ($scope, $state, $location, $ionicPlatform, weeklycontents, CRUDService, userObj, $ionicModal, $ionicLoading, $ionicHistory, $cordovaGoogleAnalytics) {
+  .controller('DashboardController', function ($scope, $rootScope, $state, $location, $ionicPlatform, weeklycontents, CRUDService, userObj, $ionicModal, $ionicLoading, $ionicHistory, $cordovaGoogleAnalytics) {
 
     $ionicPlatform.ready(function () {
          console.log('cordovaGoogleAnalytics.trackView - Home Screen');
          $cordovaGoogleAnalytics.trackView('Home Screen');
     });
 
+
+    $ionicModal.fromTemplateUrl('templates/updatestatus.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(statusmodal) {
+        $scope.statusmodal = statusmodal;
+    });
+    //DashboardController
+
+    $scope.openStatusModal = function() {
+        console.log("openStatusModal.....");
+        $scope.statusmodal.show();
+    };
+
+    $scope.userstatuslist = ['Estoy contenta',
+                             'Me siento plena',
+                             'Amo a mi bebe',
+                             'Ya ha nacido mi bebé'];
+
+    $scope.statusData = {'current':'Estoy contenta'};
+
+    $scope.closeStatusModal = function(item) {
+        //$scope.userstatus = "Has cambiado el estado...";
+
+        console.log("closeStatusModal.....");
+        //console.log("Nuevo estado:" + $scope.status.current);
+        console.log("Nuevo estado:" + item);
+        $scope.userstatus = item;
+        //console.log("Nuevo estado:" + status.close);
+        $scope.statusmodal.hide();
+    };
+
+
     $scope.data = {};
     //$scope.user = CRUDService.getObject('userProfile');
 
-     $scope.$on('modal.hidden', function() {
+    $scope.$on('modal.hidden', function() {
         //$state.go($state.current, {}, {reload: true});
          $ionicHistory.nextViewOptions({
             disableBack: true
@@ -22,11 +55,13 @@ angular.module('DashboardModule', ['WeeklyContentModel','WeeklyContentServiceMod
          $state.go('app.dashboard',{}, {reload: true});
          //setupSlider();
          console.log(' ............. DashboardModule --- $ionicModal.hidden ................ ');
-     });
+    });
 
     var initView = function(categoryId){
       console.log('inside initView DashboardController...');
       //$scope.user = CRUDService.getObject('userProfile');
+
+      $scope.userstatus = "Estoy contenta(o)";
       $scope.weeklycontents = weeklycontents;
       console.log($scope.weeklycontents.length);
     };
@@ -52,9 +87,8 @@ angular.module('DashboardModule', ['WeeklyContentModel','WeeklyContentServiceMod
         loop: true,
         initialSlide : weekNum,
         direction: 'horizontal',
-        paginationType:'bullets',
-        speed: 300,
-        paginationHide: true
+        pagination: false,
+        speed: 300
       };
       $scope.data.sliderDelegate = null;
 
@@ -83,7 +117,6 @@ angular.module('DashboardModule', ['WeeklyContentModel','WeeklyContentServiceMod
     };
 
     $scope.$on('$ionicView.enter', function(){
-         $scope.userstatus = "Estoy contenta(o)";
          console.log('$ionicView.enter..............');
          var days = Math.floor(22/7);
          console.log('cantidad de semanas: ' + days);
