@@ -7,8 +7,10 @@ angular.module('DashboardModule', ['WeeklyContentModel','WeeklyContentServiceMod
   .controller('DashboardController', function ($scope, $rootScope, $state, $location, $ionicPlatform, weeklycontents, CRUDService, userObj, $ionicModal, $ionicLoading, $ionicHistory, $cordovaGoogleAnalytics) {
 
     $ionicPlatform.ready(function () {
+        if($rootScope.isMobile){
          console.log('cordovaGoogleAnalytics.trackView - Home Screen');
          $cordovaGoogleAnalytics.trackView('Home Screen');
+        }
     });
 
 
@@ -18,7 +20,6 @@ angular.module('DashboardModule', ['WeeklyContentModel','WeeklyContentServiceMod
     }).then(function(statusmodal) {
         $scope.statusmodal = statusmodal;
     });
-    //DashboardController
 
     $scope.openStatusModal = function() {
         console.log("openStatusModal.....");
@@ -27,22 +28,20 @@ angular.module('DashboardModule', ['WeeklyContentModel','WeeklyContentServiceMod
 
     $scope.userstatuslist = ['Estoy contenta',
                              'Me siento plena',
-                             'Amo a mi bebe',
+                             'Amo a mi bebé',
                              'Ya ha nacido mi bebé'];
 
-    $scope.statusData = {'current':'Estoy contenta'};
-
-    $scope.closeStatusModal = function(item) {
-        //$scope.userstatus = "Has cambiado el estado...";
-
-        console.log("closeStatusModal.....");
-        //console.log("Nuevo estado:" + $scope.status.current);
+    $scope.changeUserStatus = function(item) {
         console.log("Nuevo estado:" + item);
+        CRUDService.setObject('userStatus', item);
         $scope.userstatus = item;
-        //console.log("Nuevo estado:" + status.close);
+        $scope.statusData = {'current':item};
         $scope.statusmodal.hide();
     };
 
+    $scope.hideStatusModal = function() {
+        $scope.statusmodal.hide();
+    }
 
     $scope.data = {};
     //$scope.user = CRUDService.getObject('userProfile');
@@ -52,18 +51,30 @@ angular.module('DashboardModule', ['WeeklyContentModel','WeeklyContentServiceMod
          $ionicHistory.nextViewOptions({
             disableBack: true
          });
+        console.log('view has bien reloaded........');
          $state.go('app.dashboard',{}, {reload: true});
          //setupSlider();
-         console.log(' ............. DashboardModule --- $ionicModal.hidden ................ ');
     });
 
     var initView = function(categoryId){
-      console.log('inside initView DashboardController...');
-      //$scope.user = CRUDService.getObject('userProfile');
+        console.log('inside initView DashboardController...');
 
-      $scope.userstatus = "Estoy contenta(o)";
-      $scope.weeklycontents = weeklycontents;
-      console.log($scope.weeklycontents.length);
+
+
+        var initUserStatus = CRUDService.getObject('userStatus');
+        var isUserStatusEmpty = $.isEmptyObject(initUserStatus);
+
+        if(isUserStatusEmpty){
+          $scope.userstatus = "Estoy contenta";
+          $scope.statusData = {'current':'Estoy contenta'};
+        }
+        else{
+          $scope.userstatus = initUserStatus;
+          $scope.statusData = {'current':initUserStatus};
+        }
+
+          $scope.weeklycontents = weeklycontents;
+          console.log($scope.weeklycontents.length);
     };
 
     var setupSlider = function(){
@@ -72,10 +83,7 @@ angular.module('DashboardModule', ['WeeklyContentModel','WeeklyContentServiceMod
       var isRegister = $.isEmptyObject($scope.user);
       if(!isRegister){
         weekNum = $scope.user.pregnancyWeeks - 4;
-        console.log('$scope.user.pregnancyWeeks----');
       }else{
-        console.log('Estoy contenta ....');
-        //$scope.user.status = "Estoy contenta(o)";
         weekNum =  4;
       }
 
@@ -154,8 +162,6 @@ angular.module('DashboardModule', ['WeeklyContentModel','WeeklyContentServiceMod
         $state.go('app.weekbyweek',{id:weekNum});
         //$state.go('app.weekbyweek');
     }
-
-
     setupSlider();
   })
 

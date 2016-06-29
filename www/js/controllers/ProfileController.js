@@ -1,5 +1,5 @@
 angular.module('ProfileModule', ['UserModel'])
-.controller('ProfileController', function($scope, $timeout, $stateParams, CRUDService, $ionicModal, $ionicLoading, $state, $ionicSideMenuDelegate, $cordovaGoogleAnalytics) {
+.controller('ProfileController', function($scope,$rootScope,$timeout, $stateParams, CRUDService, $ionicModal, $ionicLoading, $state, $ionicSideMenuDelegate, $cordovaGoogleAnalytics) {
 
             $scope.$on('$ionicView.enter', function(){
                        console.log("ionicView.enter");

@@ -1,12 +1,17 @@
 <ion-view view-title="storedetail">
-  <ion-nav-title>{{store.name}}</ion-nav-title>
-  <ion-content overflow-scroll="false">
-    <div class="list card">
-      <div class="item item-body">
-        <img class="full-image" src="{{store.image}}">
-        <h2>{{store.name}}</h2>
-        <p>{{store.description}}</p>
-        <a ng-href="{{store.storeUrl}}" class="item" onclick="window.open(this.href, '_system', 'location=yes'); return false;">Visitar web</a>
+    <ion-nav-title>
+        <img src="img/headerIcon.png" width="auto" height="38px" style="float:left"/><h1 class="title"> {{store.name}}</h1>
+    </ion-nav-title>
+
+<!--<ion-nav-title>{{store.name}}</ion-nav-title>-->
+    <ion-content overflow-scroll="false">
+        <div class="list card">
+        <div class="item item-body">
+            <img class="full-image" src="{{store.image}}">
+            <h2>{{store.name}}</h2>
+            <p>{{store.description}}</p>
+            <!--<a ng-href="{{store.storeUrl}}" class="item" onclick="window.open(this.href, '_system', 'location=yes'); return false;">Visitar web</a>-->
+            <button class="button button-calm icon-right ion-ios-world" ng-click="openStoreSite(store.storeUrl)">Ir a la Web</button>
       </div>
     </div>
   </ion-content>

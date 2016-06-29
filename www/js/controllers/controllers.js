@@ -38,13 +38,16 @@ angular.module('starter.controllers', [])
     var isRegister = false;
 
     $ionicPlatform.ready(function () {
-        console.log('register to Analytics with track ID UA-61933092-10');
-        //$cordovaGoogleAnalytics.debugMode();
-        $cordovaGoogleAnalytics.startTrackerWithId('UA-61933092-10');
 
-        $scope.initPushNotification();
+        if($rootScope.isMobile){
+            console.log('register to Analytics with track ID UA-61933092-10');
+            //$cordovaGoogleAnalytics.debugMode();
+            $cordovaGoogleAnalytics.startTrackerWithId('UA-61933092-10');
 
-        $scope.registerUser();
+            $scope.initPushNotification();
+
+            $scope.registerUser();
+        }
 
     });
 
@@ -53,7 +56,7 @@ angular.module('starter.controllers', [])
     }
 
     $scope.registerUser = function(){
-      console.log('--------------------------------- userProfile ---------------------------------');
+      console.log('----------------- userProfile -----------------------');
       var userObj = CRUDService.getObject('userProfile');
       //console.log(userObj);
       isRegister = $.isEmptyObject(userObj);
@@ -107,7 +110,6 @@ angular.module('starter.controllers', [])
         console.log('User birthdate '+ $scope.user.userBirthdate);
         console.log('User mobile '+ $scope.user.mobile);
         console.log('User zipcode '+ $scope.user.zipcode);
-        //console.log('User state '+ $scope.user.state);
         console.log('User UUID ' + device.uuid);
 
         var birthdate = new Date($scope.user.userBirthdate);

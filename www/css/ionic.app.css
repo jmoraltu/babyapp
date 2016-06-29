@@ -10042,3 +10042,22 @@ https://css-tricks.com/almanac/properties/o/object-fit/
     background-color: rgba(255,255,255,0.2) !important;
     padding-right:  10px !important;
 }
+
+.content-category p{
+    white-space: normal;
+/*    max-height: 80px;*/
+    max-height: 5.6em;
+}
+
+.store-item a{
+    padding-right:  16px !important;
+}
+
+.img-nav-bar{
+    width: auto;
+    height: 38px;
+    float: left;
+    content:url('../img/headerIcon.png');
+/*    background-image: url('/img/headerIcon.png');*/
+/*    width="auto" height="38px" style="float:left"*/
+}

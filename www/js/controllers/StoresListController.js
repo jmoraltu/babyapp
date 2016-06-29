@@ -5,7 +5,7 @@
 angular.module('StoresListModule', ['StoreModel','StoresServiceModule'])
 
   //************** Stores Controller  ********************
-  .controller('StoresListController', function ($scope, Store, StoresService, $ionicPlatform, $cordovaGoogleAnalytics) {
+  .controller('StoresListController', function ($scope, $rootScope, Store, StoresService, $ionicPlatform, $cordovaGoogleAnalytics) {
 
     var initView = function(){
     //$scope.storeslist = StoresService.getStores();
@@ -22,7 +22,9 @@ angular.module('StoresListModule', ['StoreModel','StoresServiceModule'])
     };
 
     $scope.$on('$ionicView.loaded', function(){
-      $cordovaGoogleAnalytics.trackView('StoresList Screen');
+      if($rootScope.isMobile){
+        $cordovaGoogleAnalytics.trackView('StoresList Screen');
+      }
       console.log('StoresListModule.loaded.......');
       initView();
     });

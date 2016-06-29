@@ -4,7 +4,7 @@
 angular.module('WeekByWeekModule', ['WeeklyContentModel','WeeklyContentServiceModule'])
 
   //************** WeekByWeek Controller  ********************
-  .controller('WeekByWeekController', function ($scope, weeklycontents, $location, $anchorScroll, $ionicScrollDelegate, $stateParams, WeeklyContentService, CRUDService, $ionicLoading, $cordovaGoogleAnalytics) {
+  .controller('WeekByWeekController', function ($scope, $rootScope, weeklycontents, $location, $anchorScroll, $ionicScrollDelegate, $stateParams, WeeklyContentService, CRUDService, $ionicLoading, $cordovaGoogleAnalytics) {
 
     //$anchorScroll.yOffset = 300;
 
@@ -75,7 +75,9 @@ angular.module('WeekByWeekModule', ['WeeklyContentModel','WeeklyContentServiceMo
 
     $scope.$on('$ionicView.loaded', function(){
       console.log('onicView.loaded......WeekByWeekController.');
-      $cordovaGoogleAnalytics.trackView('WeekByWeek Content Screen');
+      if($rootScope.isMobile){
+        $cordovaGoogleAnalytics.trackView('WeekByWeek Content Screen');
+      }
 
       initView();
     });

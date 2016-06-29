@@ -5,7 +5,7 @@
 angular.module('ContentListByCategoryModule', ['CategoryModel', 'ContentModel', 'ContentServiceModule'])
 
   //************** ContentList By Cayegory Controller  ********************
-  .controller('ContentListByCategoryController', function ($scope, $stateParams, ContentService, $cordovaGoogleAnalytics) {
+  .controller('ContentListByCategoryController', function ($scope, $rootScope, $stateParams, ContentService, $cordovaGoogleAnalytics) {
 
     var initView = function(categoryId){
 
@@ -23,7 +23,9 @@ angular.module('ContentListByCategoryModule', ['CategoryModel', 'ContentModel', 
       console.log('onicView.loaded ContentDetailModule.......');
       var categoryId = $stateParams.id;
       console.log('categoryId: ' + categoryId);
-      $cordovaGoogleAnalytics.trackView('ContentListByCategory Screen');
+      if($rootScope.isMobile){
+        $cordovaGoogleAnalytics.trackView('ContentListByCategory Screen');
+      }
       initView(categoryId);
     });
   })

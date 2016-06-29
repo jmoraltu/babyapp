@@ -1,9 +1,9 @@
 <ion-view view-title="ContentListByCategory">
   <ion-nav-title>
-    <img src="img/babyappHeader.png" height="100%">
+      <img class="img-nav-bar"/><h1 class="title">Enciclopedía</h1>
   </ion-nav-title>
   <ion-content overflow-scroll="false" has-bouncing="true">
-    <ion-list>
+    <ion-list class="content-category">
       <ion-item class="item-thumbnail-left" ng-repeat="contentItem in contentArticlesList" href="#/app/contentdetail/{{contentItem.id}}">
         <img ng-src="{{contentItem.image}}">
         <p>{{contentItem.title}}</p>

@@ -2,20 +2,15 @@
     <ion-header-bar align-title="center" class="bar-light">
         <img src="img/headerIcon.png" width="auto" height="38px"/><h1 class="title"> Cambiar estado</h1>
          <div class="buttons">
-            <button class="button button-clear" ng-click="closeStatusModal('')">Cerrar</button>
+            <button class="button button-clear" ng-click="hideStatusModal()">Cerrar</button>
         </div>
     </ion-header-bar>
 
     <ion-content>
        <ion-list type="list-inset">
-            <ion-radio ng-model="statusData.current" ng-repeat="userstatus in userstatuslist" ng-click="closeStatusModal(userstatus)">
+            <ion-radio ng-model="statusData.current" ng-repeat="userstatus in userstatuslist" ng-click="changeUserStatus(userstatus)" ng-value="userstatus">
               {{userstatus}}
             </ion-radio>
-<!--
-           <ion-radio ng-value="triste" ng-model="status.current" ng-click="closeStatusModal(status)">
-               Me siento triste
-           </ion-radio>
--->
         </ion-list>
     </ion-content>
 </ion-modal-view>

@@ -1,9 +1,10 @@
-<ion-view view-title="Tiendas_">
+<ion-view view-title="Tiendas">
    <ion-nav-title>
-        <img src="img/headerIcon.png" width="auto" height="38px" style="float:none"/><h1 class="title"> Tiendas</h1>
+       <img class="img-nav-bar"/><h1 class="title">Tiendas</h1>
+       <h1 class="title"> Tiendas</h1>
   </ion-nav-title>
   <ion-content  overflow-scroll="false" has-bouncing="true">
-    <ion-list class="animate-ripple">
+    <ion-list class="animate-ripple store-item">
       <ion-item class="item-avatar" ng-repeat="store in storeslist" href="#/app/storedetail/{{store.id}}">
         <img src="{{store.thumbnail}}">
         <h2> {{store.name}}</h2>
